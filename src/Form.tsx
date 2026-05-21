@@ -21,7 +21,7 @@ const schema = z
     message: 'Las contraseñas no coinciden',
     path: ['confirmContraseña'],
   })
-type FormValue = z.infer<typeof schema>
+export type FormValue = z.infer<typeof schema>
 export function Form() {
   const {
     control,
