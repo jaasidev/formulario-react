@@ -6,7 +6,7 @@ interface CustomInputProps {
   readonly control: Control<FormValue>
   readonly error: ErrorOption
 }
-export function CustomInput({ name, control }: CustomInputProps) {
+export function CustomCheckbox({ name, control }: CustomInputProps) {
   return (
     <div className='form-control w-full'>
       <label
@@ -25,7 +25,6 @@ export function CustomInput({ name, control }: CustomInputProps) {
             />
           )}
         />
-
         <span className='label-text'>{name}</span>
       </label>
     </div>

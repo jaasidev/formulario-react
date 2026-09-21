@@ -4,3 +4,7 @@
 .input {
     @apply outline-0;
 }
+
+.form-control {
+    @apply mb-2
+}

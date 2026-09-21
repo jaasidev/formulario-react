@@ -2,16 +2,14 @@ import { Controller, type Control, type FieldError } from 'react-hook-form'
 import type { FormValue } from './Form'
 interface CustomInputProps {
   readonly name: keyof FormValue
-  readonly type: string
   readonly control: Control<FormValue>
   readonly error?: FieldError
   readonly styles?: string
   readonly placeholder: string
   readonly label: string
 }
-export function CustomInput({
+export function CustomInputNumber({
   name,
-  type,
   control,
   error,
   styles,
@@ -29,10 +27,13 @@ export function CustomInput({
         render={({ field }) => (
           <input
             id={name}
-            type={type}
+            type='number'
             placeholder={placeholder}
             className={`input input-bordered w-full ${styles}`}
             {...field}
+            onChange={(e) => {
+              field.onChange(e.target.value === '' ? 0 : Number(e.target.value))
+            }}
             value={field.value ?? ''}
           />
         )}
