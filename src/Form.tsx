@@ -2,7 +2,6 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { useForm, type SubmitHandler, useFieldArray } from 'react-hook-form'
 import { CustomInput } from './CustomInput'
-import { useState, useRef, type ChangeEventHandler } from 'react'
 
 const participante = z.object({
   name: z.string().min(1, 'El nombre del participante no puede estar vacío'),
@@ -34,7 +33,6 @@ export function Form() {
     handleSubmit,
     formState: { errors, isValid },
   } = useForm<FormValue>({ resolver: zodResolver(schema) })
-  const checkRef = useRef<HTMLInputElement>(null)
   const { fields, append, remove } = useFieldArray({
     name: 'participantes',
     control: control,
