@@ -1,4 +1,4 @@
-import { FormContacto } from './components/FormContacto'
+import { FormContacto } from './components/forms/FormContacto'
 import './index.css'
 
 function App() {

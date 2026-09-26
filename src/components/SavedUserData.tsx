@@ -1,4 +1,4 @@
-import type { FormValue } from './FormContacto'
+import type { FormValue } from './forms/FormContacto'
 import type { UseFormSetValue } from 'react-hook-form'
 interface SavedUserDataProps {
   readonly user: string

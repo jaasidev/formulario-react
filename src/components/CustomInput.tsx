@@ -4,7 +4,7 @@ import {
   type FieldError,
   type FieldPathByValue,
 } from 'react-hook-form'
-import type { FormValue } from './FormContacto'
+import type { FormValue } from './forms/FormContacto'
 
 interface CustomInputProps {
   readonly name: FieldPathByValue<FormValue, string | number | undefined>

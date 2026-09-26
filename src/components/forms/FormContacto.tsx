@@ -1,9 +1,9 @@
 import { Controller, useForm, type SubmitHandler } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { CustomInput } from './CustomInput'
-import { savedUser } from '../mocks/savedUser'
-import { SavedUserData } from './SavedUserData'
+import { CustomInput } from '../CustomInput'
+import { savedUser } from '../../mocks/savedUser'
+import { SavedUserData } from '../SavedUserData'
 
 const schema = z.object({
   name: z
