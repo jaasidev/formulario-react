@@ -4,11 +4,15 @@ import { useForm, type SubmitHandler, useFieldArray } from 'react-hook-form'
 import { CustomInput } from './CustomInput'
 
 const participante = z.object({
-  name: z.string().min(1, 'El nombre del participante no puede estar vacío'),
+  name: z
+    .string('El nombre del participante no puede estar vacío')
+    .min(1, 'El nombre del participante no puede estar vacío'),
 })
 const schema = z
   .object({
-    name: z.string().min(1, 'El nombre no puede estar vacío'),
+    name: z
+      .string('El nombre del participante no puede estar vacío')
+      .min(1, 'El nombre no puede estar vacío'),
     correo: z.email('Correo invalido').min(1, 'El correo es requerido'),
     constraseña: z
       .string()
@@ -19,7 +23,6 @@ const schema = z
     edad: z.number().positive('La edad tiene que ser mayor que 0'),
     participantes: z.array(participante),
   })
-
   .refine((data) => data.constraseña === data.confirmContraseña, {
     message: 'Las contraseñas no coinciden',
     path: ['confirmContraseña'],
@@ -32,12 +35,14 @@ export function Form() {
     control,
     handleSubmit,
     formState: { errors, isValid },
-  } = useForm<FormValue>({ resolver: zodResolver(schema) })
+  } = useForm<FormValue>({ resolver: zodResolver(schema), mode: 'onBlur' })
   const { fields, append, remove } = useFieldArray({
     name: 'participantes',
     control: control,
     shouldUnregister: true,
   })
+
+  console.log(errors.confirmContraseña?.message)
 
   const onSubmit: SubmitHandler<FormValue> = (data: FormValue) =>
     console.log(data)
@@ -114,6 +119,7 @@ export function Form() {
       <button
         className='btn btn-primary text-center'
         onClick={() => append({ name: '' })}
+        type='button'
       >
         Agregar
       </button>

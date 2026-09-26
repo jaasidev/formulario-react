@@ -4,10 +4,10 @@ import {
   type FieldError,
   type FieldPathByValue,
 } from 'react-hook-form'
-import type { FormValue } from './Form'
+import type { FormValue } from './FormContacto'
 
 interface CustomInputProps {
-  readonly name: FieldPathByValue<FormValue, string | number>
+  readonly name: FieldPathByValue<FormValue, string | number | undefined>
   readonly type: string
   readonly control: Control<FormValue>
   readonly error?: FieldError
@@ -32,6 +32,7 @@ export function CustomInput({
       <Controller
         name={name}
         control={control}
+        shouldUnregister
         render={({ field }) => (
           <input
             id={name}

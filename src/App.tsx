@@ -1,4 +1,4 @@
-import { Form } from './Form'
+import { FormContacto } from './components/FormContacto'
 import './index.css'
 
 function App() {
@@ -7,10 +7,10 @@ function App() {
       <div className='card w-full max-w-md bg-base-100 shadow-xl'>
         <div className='card-body'>
           <h2 className='card-title text-2xl font-bold mb-4 justify-center'>
-            Registro de Usuario
+            Formulario
           </h2>
 
-          <Form />
+          <FormContacto />
         </div>
       </div>
     </div>
