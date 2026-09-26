@@ -8,3 +8,11 @@
 .form-control {
     @apply mb-2
 }
+
+.dropzone {
+    @apply border-dashed border-2 border-gray-700 text-center p-5 h-50 flex justify-center items-center cursor-pointer text-gray-700
+}
+
+.dropzone:hover {
+    @apply border-gray-400 transition-colors text-gray-400
+}

@@ -1,4 +1,4 @@
-import { FormContacto } from './components/forms/FormContacto'
+import { FormUsuario } from './components/forms/FormUsuario'
 import './index.css'
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
             Formulario
           </h2>
 
-          <FormContacto />
+          <FormUsuario />
         </div>
       </div>
     </div>
