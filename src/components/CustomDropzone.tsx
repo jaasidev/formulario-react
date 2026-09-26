@@ -1,7 +1,7 @@
 import { useDropzone } from 'react-dropzone'
 import { Controller, type Control } from 'react-hook-form'
-import type { FormValue } from './forms/FormUsuario'
-import { useEffect, useState } from 'react'
+import type { FormValue, Image } from './forms/FormUsuario'
+import { useEffect } from 'react'
 import type { UseFormSetValue } from 'react-hook-form'
 
 interface CustomDropzone {
@@ -9,19 +9,19 @@ interface CustomDropzone {
   readonly control: Control<FormValue>
   readonly error: string | undefined
   readonly seter: UseFormSetValue<FormValue>
+  readonly files: Image[]
+  readonly setFiles: React.Dispatch<React.SetStateAction<Image[]>>
 }
 
-interface Image extends File {
-  preview: string
-}
 export function CustomDropzone({
   name,
   control,
   error,
   seter,
+  files,
+  setFiles,
 }: CustomDropzone) {
-  const [files, setFiles] = useState<Image[]>([])
-  const { getInputProps, getRootProps, acceptedFiles } = useDropzone({
+  const { getInputProps, getRootProps } = useDropzone({
     onDrop: (acceptedFiles: File[]) => {
       setFiles(
         acceptedFiles.map((val) =>
@@ -67,10 +67,10 @@ export function CustomDropzone({
             />
           )}
         />
-        {acceptedFiles.length === 0 && (
+        {files.length === 0 && (
           <p>Drag 'n' drop some files here, or click to select files</p>
         )}
-        {acceptedFiles.length > 0 && (
+        {files.length > 0 && (
           <aside className='mt-2 flex items-center gap-2 flex-wrap'>
             {thumbs}
           </aside>
