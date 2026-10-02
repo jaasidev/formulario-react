@@ -1,12 +1,13 @@
-import { useFormContext } from 'react-hook-form'
+import { useFormContext, type FieldErrors } from 'react-hook-form'
 import { CustomInput } from '../../CustomInput'
 import type { FormValues } from '../Wizard'
 
-export function Step1() {
-  const {
-    control,
-    formState: { errors },
-  } = useFormContext<FormValues>()
+export function Step1({
+  errors,
+}: {
+  readonly errors: FieldErrors<FormValues>
+}) {
+  const { control } = useFormContext<FormValues>()
 
   return (
     <div className='space-y-4'>

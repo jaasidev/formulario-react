@@ -29,16 +29,16 @@ const schema = z
 export type FormValues = z.infer<typeof schema>
 export function Wizard() {
   const [steps, setSteps] = useState(0)
-  const methods = useForm<FormValues>({ resolver: zodResolver(schema) })
+  const methods = useForm<FormValues>({
+    resolver: zodResolver(schema),
+    mode: 'onChange',
+    shouldUnregister: false,
+  })
+
   const handleClick = async () => {
-    const { trigger } = methods
+    const isValid = await methods.trigger(['name', 'email'])
 
-    const [nameIsValid, emailIsValid] = await Promise.all([
-      trigger('name'),
-      trigger('email'),
-    ])
-
-    if (nameIsValid && emailIsValid) {
+    if (isValid) {
       setSteps((steps) => steps + 1)
     }
   }
@@ -53,16 +53,34 @@ export function Wizard() {
           <FormProvider {...methods}>
             <ProgressBar steps={steps} />
             <form onSubmit={methods.handleSubmit(onSubmit)}>
-              {steps === 0 && <Step1 />}
-              {steps === 1 && <Step2 />}
+              {steps === 0 && <Step1 errors={methods.formState.errors} />}
+              {steps === 1 && <Step2 errors={methods.formState.errors} />}
               <div className='flex justify-between items-center'>
-                <button
-                  className='btn btn-primary'
-                  onClick={handleClick}
-                  type='button'
-                >
-                  Siguiente
-                </button>
+                {steps === 0 && (
+                  <button
+                    className='btn btn-primary'
+                    onClick={handleClick}
+                    type='button'
+                  >
+                    Siguiente
+                  </button>
+                )}
+                {steps === 1 && (
+                  <>
+                    <button
+                      className='btn btn-primary'
+                      onClick={() => {
+                        setSteps((steps) => steps - 1)
+                      }}
+                      type='button'
+                    >
+                      Anterior
+                    </button>
+                    <button className='btn btn-primary' type='submit'>
+                      Enviar
+                    </button>
+                  </>
+                )}
               </div>
             </form>
           </FormProvider>

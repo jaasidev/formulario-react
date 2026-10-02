@@ -32,7 +32,6 @@ export function CustomInput({
       <Controller
         name={name}
         control={control}
-        shouldUnregister
         render={({ field }) => (
           <input
             id={name}
