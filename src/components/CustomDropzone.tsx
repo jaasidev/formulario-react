@@ -1,8 +1,7 @@
 import { useDropzone } from 'react-dropzone'
-import { Controller, type Control } from 'react-hook-form'
 import type { FormValue, Image } from './forms/FormUsuario'
 import { useEffect } from 'react'
-import type { UseFormSetValue } from 'react-hook-form'
+import { type UseFormSetValue, type Control, Controller } from 'react-hook-form'
 
 interface CustomDropzone {
   readonly name: 'images'

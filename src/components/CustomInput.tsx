@@ -4,12 +4,12 @@ import {
   type FieldError,
   type FieldPathByValue,
 } from 'react-hook-form'
-import type { FormValue } from './forms/FormUsuario'
+import type { FormValues } from './wizard/Wizard'
 
 interface CustomInputProps {
-  readonly name: FieldPathByValue<FormValue, string | number>
+  readonly name: FieldPathByValue<FormValues, string | number>
   readonly type: string
-  readonly control: Control<FormValue>
+  readonly control: Control<FormValues>
   readonly error?: FieldError
   readonly styles?: string
   readonly placeholder: string
